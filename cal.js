@@ -1,4 +1,4 @@
-#developed a basic calculator#
+
 document.addEventListener("keydown", function(event) {
 	    let key = event.key;
 
