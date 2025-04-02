@@ -34,3 +34,6 @@ button {
     font-size: 1.2em;
     cursor: pointer;
 }
+button:hover {
+    background-color: #ddd;
+}
