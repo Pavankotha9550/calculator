@@ -19,7 +19,7 @@ function calculateResult() {
         display.value = result;
 
         // Save to server
-        fetch("http://<YOUR_EC2_PUBLIC_IP>:3000/api/history", {
+        fetch("http://13.60.52.163:3000/api/history", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
