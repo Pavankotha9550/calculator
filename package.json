@@ -1,0 +1,20 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/Pavankotha9550/calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pavankotha9550/calculator/issues"
+  },
+  "homepage": "https://github.com/Pavankotha9550/calculator#readme"
+}
