@@ -41,7 +41,7 @@ app.get('/api/history', (req, res) => {
 
 
 app.listen(3000, '0.0.0.0', () => {
-  console.log('Server running on http://13.60.52.163:3000');
+  console.log('Server running on http://13.53.131.60:3000');
 });
 
 
