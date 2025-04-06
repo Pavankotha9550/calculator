@@ -13,7 +13,20 @@ function backspace() {
 
 function calculateResult() {
     try {
-        document.getElementById("display").value = eval(document.getElementById("display").value);
+        const display = document.getElementById("display");
+        const expression = display.value;
+        const result = eval(expression);
+        display.value = result;
+
+        // Save to server
+        fetch("http://<YOUR_EC2_PUBLIC_IP>:3000/api/history", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ expression, result }),
+        }).then(() => loadHistory());
+
     } catch {
         document.getElementById("display").value = "Error";
     }
@@ -26,16 +39,15 @@ function appendPercentage() {
     }
 }
 
-document.addEventListener("keydown", function(event) {
-    const key = event.key;
-    if (!isNaN(key) || "+-*/.".includes(key)) {
-        appendValue(key);
-    } else if (key === "Enter") {
-        calculateResult();
-    } else if (key === "Backspace") {
-        backspace();
-    } else if (key === "%") {
-        appendPercentage();
-    }
-});
+function loadHistory() {
+    fetch("http://13.60.52.163:3000/api/history")
+        .then(res => res.json())
+        .then(data => {
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "<h3>History</h3>";
+            data.forEach(item => {
+                historyDiv.innerHTML += `<p>${item.expression} = ${item.result}</p>`;
+            });
+        });
+}
 

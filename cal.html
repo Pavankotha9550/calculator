@@ -32,7 +32,19 @@
             <button onclick="appendPercentage()">%</button> <!-- New Percentage Button -->
         </div>
     </div>
-    <script src="cal.js"></script>
+    <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+        <!-- your calculator buttons -->
+    </div>
+    <div id="history" style="margin-top: 20px;"></div>
+</div>
+
+<script src="cal.js"></script>
+<script>
+    window.onload = () => loadHistory(); // Load history on page load
+</script>
+
 </body>
 </html>
 
