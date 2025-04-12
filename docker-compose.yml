@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: calculator_db
+      MYSQL_USER: calcuser
+      MYSQL_PASSWORD: calcpass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+
+  web:
+    build: .
+    container_name: calculator_app
+    ports:
+      - "3001:3000"
+    environment:
+      DB_HOST: mysql
+      DB_USER: calcuser
+      DB_PASSWORD: calcpass
+      DB_NAME: calculator_db
+    depends_on:
+      - mysql
+    restart: always
+
+volumes:
+  db_data:
+

@@ -3,15 +3,19 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const path = require('path');
+
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname)));
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'calcuser',
-  password: 'KPNS1@kpns',
-  database: 'calculator_db'
+  host: process.env.DB_HOST || 'localhost',
+  port: 3306,
+  user: process.env.DB_USER || 'calcuser',
+  password: process.env.DB_PASSWORD || 'KPNS1@kpns',
+  database: process.env.DB_NAME || 'calculator_db'
 });
 
 db.connect(err => {
@@ -37,6 +41,9 @@ app.get('/api/history', (req, res) => {
     }
     res.json(results);
   });
+});
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cal.html'));
 });
 
 
